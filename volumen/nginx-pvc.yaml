@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.22
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - mountPath: /usr/share/nginx
+      name: www-data
+  volumes:
+  - name: www-data
+    persistentVolumeClaim:
+      claimName: www-claim
