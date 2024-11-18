@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  myconfig.xml: |-
+    <myconfig>
+    Dummy
+    Dummy
+    Dummy
+    </myconfig>
+kind: ConfigMap
+metadata:
+  name: guestbook-5-1-xml

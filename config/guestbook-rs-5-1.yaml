@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: guestbook-5-1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: guestbook-5-1
+  template:
+    metadata:
+      name: guestbook
+      labels:
+        app: guestbook-5-1
+    spec:
+      containers:
+      - name: guestbook
+        image: ghcr.io/cloudowski/flask-guestbook:0.1
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+        envFrom:
+        - secretRef:
+            name: guestbook-5-2
+        volumeMounts:
+          - mountPath: /config
+            name: myconfig
+          - mountPath: /secret
+            name: guestbook-5-2-tls
+      volumes:
+        - name: myconfig
+          configMap:
+            name: guestbook-5-1-xml
+        - name: guestbook-5-2-tls
+          secret:
+            secretName: guestbook-5-2-tls
