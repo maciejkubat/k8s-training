@@ -1,0 +1,8 @@
+primary:
+  persistence:
+    enabled: true
+    size: 2Gi
+auth:
+  username: flask
+  # password: Kub3P4ss
+  database: flask
