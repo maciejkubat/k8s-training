@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.34.0 (HEAD)
+  labels:
+    io.kompose.service: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: backend
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.34.0 (HEAD)
+      labels:
+        io.kompose.service: backend
+    spec:
+      containers:
+        - image: backend
+          name: backend
+          volumeMounts:
+            - mountPath: /run/secrets
+              name: db-password
+              subPath: db-password
+      restartPolicy: Always
+      volumes:
+        - name: db-password
+          secret:
+            items:
+              - key: db-password
+                path: db-password
+            secretName: db-password

@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: geokrety-website-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: maciejk.mooo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-service-geokrety
+            port:
+              number: 80
+  - host: maciejk.mooo.com
+    http:
+      paths:
+      - path: /vife
+        pathType: Prefix
+        backend:
+          service:
+            name: web-service-vife
+            port:
+              number: 80

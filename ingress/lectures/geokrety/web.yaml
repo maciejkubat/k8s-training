@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: geokrety
+  labels:
+    app: geokrety
+spec:
+  containers:
+  - name: geokrety
+    image: growerp/website:latest
+    ports:
+    - containerPort: 80

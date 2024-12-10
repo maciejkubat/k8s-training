@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vife-website
+  labels:
+    app: vife-website
+spec:
+  containers:
+  - name: vife-website
+    image: edirom/vife-website:latest
+    ports:
+    - containerPort: 80

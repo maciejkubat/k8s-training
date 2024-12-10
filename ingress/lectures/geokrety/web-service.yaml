@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-geokrety
+  labels:
+    app: web
+spec:
+  type: ClusterIP
+  selector:
+    app: geokrety
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: guestbook-7-1
+spec:
+  tls:
+  - hosts:
+    - guestbook.example.com
+    secretName: guestbook-7-1-ingress
+  rules:
+    - host: guestbook.example.com 
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: guestbook-7-1
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: "/api/"
+            backend:
+              service:
+                name: guestbook-7-1
+                port:
+                  number: 8080
+
